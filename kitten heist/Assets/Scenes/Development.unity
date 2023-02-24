@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightsOn: 0
   player: {fileID: 628597558}
+  nightVision: {fileID: 1899370552}
 --- !u!1 &628597558
 GameObject:
   m_ObjectHideFlags: 0
