@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float horizontal, vertical;
     public float speed;
-    private Rigidbody2D rb;
     public bool canMove = true;
+
+    private Rigidbody2D rb;
+    float horizontal, vertical;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -22,5 +23,6 @@ public class Player : MonoBehaviour
         } else {
             rb.velocity = new Vector2(0, 0);
         }
+
     }
 }
