@@ -23,10 +23,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
     public void useItem(Item i)
     {
         if(itemsHeld.Contains(i)){
-
+            itemsHeld.Remove(i);
         } 
         else
         {

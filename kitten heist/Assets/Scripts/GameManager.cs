@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI description;
     public GameObject InteractText;
 
+    public GameObject InventoryScreen;
     public GameObject inventoryItemPrefab;
     public GameObject inventoryContentHead;
 
@@ -25,11 +26,11 @@ public class GameManager : MonoBehaviour
 
     public void ShowInventory()
     {
-
+        InventoryScreen.SetActive(true);
     }
     public void CloseInventory()
     {
-
+        InventoryScreen.SetActive(false);
     }
 
     public void AddToInventory(Item i)

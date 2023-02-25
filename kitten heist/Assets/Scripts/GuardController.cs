@@ -30,7 +30,7 @@ public class GuardController : MonoBehaviour
     public bool debugLines;
 
     public float patrolSpeed = 2f, alertSpeed = 4f;
-
+    public float turnRate = 5;
     public float AlertTimer = 5f;
     public float AlertTimeLeft = 0;
 
@@ -41,6 +41,7 @@ public class GuardController : MonoBehaviour
     public GameObject projectile;
     public Transform shootPoint;
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,6 +113,10 @@ public class GuardController : MonoBehaviour
                 path.endReachedDistance = dist;
                 StartCoroutine(Shoot(shootCD));
                 AlertTimeLeft -= Time.deltaTime;
+                if (path.remainingDistance <= dist*.9)
+                {
+                    transform.up = Vector3.Lerp(transform.up, (target.position - transform.position), turnRate * Time.deltaTime);
+                }
                 if (AlertTimeLeft <= 0)
                 {
                     target = null;
@@ -119,6 +124,7 @@ public class GuardController : MonoBehaviour
                     sight.intensity = .8f;
                     state = GuardStates.Stopped;
                 }
+                
                 break;
             case GuardStates.GoingToPoint:
 
