@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Power
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Walls
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -50,4 +51,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3284607359
+    locked: 0
+  - name: Interactable
+    uniqueID: 1887863533
+    locked: 0
+  - name: UI
+    uniqueID: 2904731245
     locked: 0
