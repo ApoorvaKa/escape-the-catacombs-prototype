@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-    public string nextScene = "Level1";
+    //public string nextScene = "Level1";
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,8 @@ public class NextScene : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(nextScene);
+            //SceneManager.LoadScene(nextScene);
+            GameManager.gm.EndScreen();
         }
     }
 }

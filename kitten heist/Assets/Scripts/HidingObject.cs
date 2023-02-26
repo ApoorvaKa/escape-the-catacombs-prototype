@@ -20,7 +20,7 @@ public class HidingObject : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.E)){
         //    HidePlayer();
         //}
-        if (Input.GetMouseButtonDown(0))
+        if (Time.timeScale != 0 && Input.GetMouseButtonDown(0))
         {
             HidePlayer();
         }

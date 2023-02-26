@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
     {
         if (!itemsHeld.Contains(i) && i != null)
         {
+            GameManager.gm.itemsObtained += 1;
             itemsHeld.Add(i);
             GameManager.gm.ShowItemObtained(i);
             var button = GameManager.gm.AddToInventory(i);

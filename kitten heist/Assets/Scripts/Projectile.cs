@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //hurt player
+            GameManager.gm.Restart();
             Destroy(gameObject);
         } else if (collision.gameObject.CompareTag("Walls"))
         {

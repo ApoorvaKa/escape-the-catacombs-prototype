@@ -18,7 +18,7 @@ public class ItemHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (item != null && hasPlayer && Input.GetMouseButtonDown(0))
+        if (Time.timeScale != 0 && item != null && hasPlayer && Input.GetMouseButtonDown(0))
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0, layer);
