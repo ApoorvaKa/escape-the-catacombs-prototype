@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour
 {
     public Item item;
+    public GameObject representation;
     public bool hasPlayer = false;
     public LayerMask layer;
     // Start is called before the first frame update
@@ -25,10 +26,6 @@ public class ItemHolder : MonoBehaviour
             {
                 TakeItem();
             }
-            else
-            {
-                Debug.Log("No colliders hit from mouse click");
-            }
         }
     }
 
@@ -46,6 +43,10 @@ public class ItemHolder : MonoBehaviour
     private void TakeItem()
     {
         Inventory.i.obtainItem(item);
+        if(representation != null)
+        {
+            Destroy(representation);
+        }
         item = null;
     }
 

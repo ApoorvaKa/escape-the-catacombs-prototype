@@ -20,6 +20,8 @@ public class GuardController : MonoBehaviour
     public AIDestinationSetter destSetter;
     public AIPath path;
     public Transform[] patrolPoints;
+    public float angle;
+    public bool goToAngle = false;
     public int index = 0;
     public Transform target;
 
@@ -40,15 +42,34 @@ public class GuardController : MonoBehaviour
     public Light2D sight;
     public GameObject projectile;
     public Transform shootPoint;
-    
+    public bool lightOn = true;
+    public ToggleLights tLight;
 
     // Start is called before the first frame update
     void Start()
     {
     }
 
+    public void TurnOffLight()
+    {
+        sight.enabled = false;
+    }
+    public void TurnOnLight()
+    {
+        sight.enabled = true;
+    }
+
+    public void GoToFixLight(Transform pos, ToggleLights t)
+    {
+        tLight = t;
+        target = pos;
+        destSetter.target = target;
+        state = GuardStates.GoingToPoint;
+    }
+
     public void CastRays(float multiplier = 1f)
     {
+
         RaycastHit2D hit;
         for (int i = 0; i < rayPoints.Length; i++)
         {
@@ -61,7 +82,7 @@ public class GuardController : MonoBehaviour
                 //Vector2 localHit = transform.InverseTransformPoint(hit.point);
                 if (debugLines)
                     lines[i].SetPosition(1, hit.point);
-                if (hit.transform.gameObject.CompareTag("Player"))
+                if (hit.transform.gameObject.CompareTag("Player") && !Player.p.isHiding)
                 {
                     sight.intensity = 4f;
                     target = hit.transform;
@@ -86,9 +107,14 @@ public class GuardController : MonoBehaviour
         switch (state)
         {
             case GuardStates.Stopped:
-                
+                if (goToAngle)
+                {
+                    transform.localEulerAngles = new Vector3(0, 0, angle);
+                }
                 stopTimeLeft -= Time.deltaTime;
                 path.maxSpeed = 0f;
+                if(lightOn)
+                    CastRays();
                 if (stopTimeLeft <= 0)
                 {
                     destSetter.target = patrolPoints[index];
@@ -104,16 +130,18 @@ public class GuardController : MonoBehaviour
                     stopTimeLeft = 1f;
                     state = GuardStates.Stopped;
                 }
-                CastRays();
+                if (lightOn)
+                    CastRays();
                 break;
             case GuardStates.FollowingPlayer:
                 
                 path.maxSpeed = alertSpeed;
-                CastRays(2);
-                path.endReachedDistance = dist;
+                if (lightOn)
+                    CastRays(2);
+                path.endReachedDistance = 2f;
                 StartCoroutine(Shoot(shootCD));
                 AlertTimeLeft -= Time.deltaTime;
-                if (path.remainingDistance <= dist*.9)
+                if (path.remainingDistance <= dist*.9f && !Player.p.isHiding)
                 {
                     transform.up = Vector3.Lerp(transform.up, (target.position - transform.position), turnRate * Time.deltaTime);
                 }
@@ -127,7 +155,14 @@ public class GuardController : MonoBehaviour
                 
                 break;
             case GuardStates.GoingToPoint:
-
+                path.maxSpeed = patrolSpeed;
+                if (Vector2.Distance(transform.position, target.position) < 1f)
+                {
+                    tLight.Toggle();
+                    stopTimeLeft = 1f;
+                    state = GuardStates.Stopped;
+                    
+                }
                 break;
             case GuardStates.SpinAndSearch:
                 
@@ -143,7 +178,7 @@ public class GuardController : MonoBehaviour
         {
             shootingDone = false;
             yield return new WaitForSeconds(cd);
-            if(state == GuardStates.FollowingPlayer)
+            if(state == GuardStates.FollowingPlayer && !Player.p.isHiding)
             {
                 var g = Instantiate(projectile, shootPoint.position, transform.rotation);
                 g.GetComponent<Projectile>().Move();

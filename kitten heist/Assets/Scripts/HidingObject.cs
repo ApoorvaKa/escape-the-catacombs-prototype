@@ -5,9 +5,8 @@ using UnityEngine;
 public class HidingObject : MonoBehaviour
 {
 
-    public GameObject player;
     public GameObject exitPosition;
-
+    public LayerMask layer;
     public bool isHiding;
 
     // Start is called before the first frame update
@@ -17,27 +16,42 @@ public class HidingObject : MonoBehaviour
     }
 
     void Update(){
-        // input e for interact
-        if (Input.GetKeyDown(KeyCode.E)){
+        //// input e for interact
+        //if (Input.GetKeyDown(KeyCode.E)){
+        //    HidePlayer();
+        //}
+        if (Input.GetMouseButtonDown(0))
+        {
             HidePlayer();
         }
-
     }
 
     private void HidePlayer() {
-        float distance = Vector2.Distance(player.transform.position, transform.position);
+        float distance = Vector2.Distance(Player.p.transform.position, transform.position);
         if (distance < 2) {
-            if (isHiding){
-                player.transform.position = exitPosition.transform.position;
-                GetComponent <SpriteRenderer>().color = Color.white;
-                isHiding = false;
-                print("Player not hiding");
-            }
-            else{
-                player.transform.position = transform.position;
-                GetComponent <SpriteRenderer>().color = Color.green;
-                isHiding = true;
-                print("Player hiding");
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0, layer);
+            if (hit)
+            {
+                if (isHiding)
+                {
+
+                    Player.p.transform.position = exitPosition.transform.position;
+                    GetComponent<SpriteRenderer>().color = Color.white;
+                    isHiding = false;
+                    print("Player not hiding");
+                    Player.p.isHiding = false;
+                    //Player.p.GetComponent<BoxCollider2D>().enabled = false;
+                }
+                else
+                {
+                    Player.p.transform.position = transform.position;
+                    GetComponent<SpriteRenderer>().color = Color.green;
+                    isHiding = true;
+                    print("Player hiding");
+                    Player.p.isHiding = true;
+                    //Player.p.GetComponent<BoxCollider2D>().enabled = true;
+                }
             }
         }
     }

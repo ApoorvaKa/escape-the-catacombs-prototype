@@ -6,11 +6,13 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory i;
     public List<Item> itemsHeld;
+    public Dictionary<Item, GameObject> itemInInventory;
 
     // Start is called before the first frame update
     void Start()
     {
         i = this;
+        itemInInventory = new Dictionary<Item, GameObject>();
     }
 
     public void obtainItem(Item i)
@@ -19,19 +21,24 @@ public class Inventory : MonoBehaviour
         {
             itemsHeld.Add(i);
             GameManager.gm.ShowItemObtained(i);
-            GameManager.gm.AddToInventory(i);
+            var button = GameManager.gm.AddToInventory(i);
+            itemInInventory.Add(i, button);
         }
     }
 
 
-    public void useItem(Item i)
+    public bool UseItem(Item i)
     {
         if(itemsHeld.Contains(i)){
             itemsHeld.Remove(i);
+            Destroy(itemInInventory[i]);
+            itemInInventory.Remove(i);
+            return true;
         } 
         else
         {
             // error
+            return false;
         }
     }
 }

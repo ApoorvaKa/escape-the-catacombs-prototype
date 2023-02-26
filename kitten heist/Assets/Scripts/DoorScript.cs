@@ -26,10 +26,6 @@ public class DoorScript : MonoBehaviour
             {
                 TakeItem();
             }
-            else
-            {
-                Debug.Log("No colliders hit from mouse click");
-            }
         }
     }
 
@@ -46,8 +42,10 @@ public class DoorScript : MonoBehaviour
     }
     private void TakeItem()
     {
-        Inventory.i.useItem(acceptedItem);
-        Destroy(gameObject);
+        if (Inventory.i.UseItem(acceptedItem))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

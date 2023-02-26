@@ -33,10 +33,11 @@ public class GameManager : MonoBehaviour
         InventoryScreen.SetActive(false);
     }
 
-    public void AddToInventory(Item i)
+    public GameObject AddToInventory(Item i)
     {
         var invI = Instantiate(inventoryItemPrefab, inventoryContentHead.transform);
         invI.GetComponent<InventoryItem>().init(i);
+        return invI;
     }
 
     public void ShowItemObtained(Item i)
