@@ -45,6 +45,7 @@ public class GuardController : MonoBehaviour
     public bool lightOn = true;
     public ToggleLights tLight;
 
+    public GameObject spriteController;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +105,7 @@ public class GuardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         switch (state)
         {
             case GuardStates.Stopped:
@@ -170,6 +172,10 @@ public class GuardController : MonoBehaviour
             default:
                 break;
         }
+        spriteController.transform.localEulerAngles = new Vector3(0, 0, -transform.localEulerAngles.z);
+        Animator a = spriteController.GetComponent<Animator>();
+        a.SetFloat("Speed", path.velocity.magnitude);
+        a.SetFloat("Horizontal", path.velocity.x);
     }
 
     IEnumerator Shoot(float cd)
