@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float speed;
     public bool canMove = true;
     public bool isHiding = false;
+    public Animator animator;
 
     private Rigidbody2D rb;
     float horizontal, vertical;
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour
             GetComponent<BoxCollider2D>().enabled = true;
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
+
+            animator.SetFloat("Horizontal", horizontal);
+            animator.SetFloat("Speed", horizontal * horizontal + vertical * vertical);
+
             rb.velocity = new Vector2(horizontal, vertical).normalized * speed;
 
         } else {
