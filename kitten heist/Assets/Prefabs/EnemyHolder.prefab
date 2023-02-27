@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3974724679815469196}
   - component: {fileID: 3974724679815469197}
   - component: {fileID: 3974724679815469194}
+  - component: {fileID: 7854123385006753996}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -114,7 +115,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.3537736, b: 0.3537736, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,6 +141,8 @@ MonoBehaviour:
   destSetter: {fileID: 3974724679815469197}
   path: {fileID: 3974724679815469196}
   patrolPoints: []
+  angle: 0
+  goToAngle: 0
   index: 0
   target: {fileID: 0}
   rayPoints:
@@ -165,6 +168,8 @@ MonoBehaviour:
   sight: {fileID: 3974724681405159318}
   projectile: {fileID: 3097509857688942638, guid: ae8f3e64b543a2e4a91cb27f7c38f697, type: 3}
   shootPoint: {fileID: 3974724679637870613}
+  lightOn: 1
+  tLight: {fileID: 0}
 --- !u!114 &3974724679815469199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +280,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &7854123385006753996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974724679815469192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 763e2bbe60be742ada88c1e5f37ac2c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3974724680442372265
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  representation: {fileID: 0}
   hasPlayer: 0
   layer:
     serializedVersion: 2
