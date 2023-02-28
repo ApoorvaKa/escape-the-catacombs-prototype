@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Figure
   description: A weird object
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 773096871, guid: 6d8be170442aa61418a447a08ddd1342, type: 3}
   tag: 

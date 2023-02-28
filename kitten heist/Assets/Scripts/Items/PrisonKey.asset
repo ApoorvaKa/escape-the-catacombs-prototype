@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Prison Key
   description: One time use on cell doors.
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -1027854083, guid: 6d8be170442aa61418a447a08ddd1342, type: 3}
   tag: 
