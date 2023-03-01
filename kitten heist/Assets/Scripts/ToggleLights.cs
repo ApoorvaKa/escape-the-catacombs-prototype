@@ -10,9 +10,15 @@ public class ToggleLights : MonoBehaviour
     [Header("Night Vision")]
     public GameObject nightVision;
     public GuardController fixer;
+
+
+    private AudioSource audioSource;
+    public AudioClip lightsOffSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         lightsOn = true;
     }
 
@@ -40,6 +46,8 @@ public class ToggleLights : MonoBehaviour
 
         if (lightsOn)
         {
+
+            audioSource.PlayOneShot(lightsOffSound);
             lightsOn = false;
             nightVision.SetActive(true);
             fixer.GoToFixLight(transform, this);

@@ -9,10 +9,12 @@ public class DoorScript : MonoBehaviour
 
     public bool hasPlayer = false;
     public LayerMask layer;
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    private AudioSource audioSource;
+    public AudioClip unlockSound;
+
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,8 @@ public class DoorScript : MonoBehaviour
     {
         if (Inventory.i.UseItem(acceptedItem))
         {
-            Destroy(gameObject);
+            audioSource.PlayOneShot(unlockSound);
+            Destroy(gameObject, 1f);
         }
     }
 

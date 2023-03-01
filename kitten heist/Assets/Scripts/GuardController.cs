@@ -46,9 +46,15 @@ public class GuardController : MonoBehaviour
     public ToggleLights tLight;
 
     public GameObject spriteController;
+
+    private AudioSource audioSource;
+    public AudioClip shootingSound;
+    
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     public void TurnOffLight()
@@ -182,6 +188,7 @@ public class GuardController : MonoBehaviour
     {
         if (shootingDone)
         {
+            audioSource.PlayOneShot(shootingSound);
             shootingDone = false;
             yield return new WaitForSeconds(cd);
             if(state == GuardStates.FollowingPlayer && !Player.p.isHiding)

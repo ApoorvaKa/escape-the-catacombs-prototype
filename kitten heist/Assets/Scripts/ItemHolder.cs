@@ -9,6 +9,9 @@ public class ItemHolder : MonoBehaviour
     public GameObject representation;
     public bool hasPlayer = false;
     public LayerMask layer;
+    public AudioSource audioSource;
+    public AudioClip pickUpSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class ItemHolder : MonoBehaviour
     }
     private void TakeItem()
     {
+        audioSource.PlayOneShot(pickUpSound);
         Inventory.i.obtainItem(item);
         if(representation != null)
         {
