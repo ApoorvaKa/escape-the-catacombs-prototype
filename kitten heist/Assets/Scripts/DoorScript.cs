@@ -24,8 +24,10 @@ public class DoorScript : MonoBehaviour
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0, layer);
+            
             if (hit)
             {
+                
                 TakeItem();
             }
         }
@@ -44,10 +46,12 @@ public class DoorScript : MonoBehaviour
     }
     private void TakeItem()
     {
+        print("taking Item");
         if (Inventory.i.UseItem(acceptedItem))
         {
+
             audioSource.PlayOneShot(unlockSound);
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, .3f);
         }
     }
 

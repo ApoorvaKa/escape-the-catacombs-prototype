@@ -27,6 +27,7 @@ public class ItemHolder : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0, layer);
             if (hit)
             {
+                Debug.Log("Hit: item: " + hit.transform.name);
                 TakeItem();
             }
         }
@@ -45,7 +46,8 @@ public class ItemHolder : MonoBehaviour
     }
     private void TakeItem()
     {
-        audioSource.PlayOneShot(pickUpSound);
+        if(audioSource != null)
+            audioSource.PlayOneShot(pickUpSound);
         Inventory.i.obtainItem(item);
         if(representation != null)
         {

@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     
     void Update() {
         if (canMove && !isHiding) {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             GetComponent<BoxCollider2D>().enabled = true;
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
@@ -32,7 +33,10 @@ public class Player : MonoBehaviour
 
         } else {
             rb.velocity = new Vector2(0, 0);
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Speed", 0);
             GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
         }
 
     }
