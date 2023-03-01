@@ -46,7 +46,7 @@ public class HidingObject : MonoBehaviour
                 else
                 {
                     Player.p.transform.position = transform.position;
-                    GetComponent<SpriteRenderer>().color = Color.green;
+                    GetComponent<SpriteRenderer>().color = Color.gray;
                     isHiding = true;
                     print("Player hiding");
                     Player.p.isHiding = true;

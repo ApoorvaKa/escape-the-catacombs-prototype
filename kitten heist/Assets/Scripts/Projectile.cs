@@ -26,12 +26,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Player"))
         {
             //hurt player
             GameManager.gm.Restart();
             Destroy(gameObject);
-        } else if (collision.gameObject.CompareTag("Walls"))
+        } else if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);
         }

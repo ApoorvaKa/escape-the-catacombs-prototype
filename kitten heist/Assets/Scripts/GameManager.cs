@@ -38,9 +38,11 @@ public class GameManager : MonoBehaviour
     public GameObject LevelEnd;
     public TextMeshProUGUI[] rank;
     public TextMeshProUGUI itemCounter;
+    public bool hasEnded = false;
     // Start is called before the first frame update
     void Start()
     {
+        hasEnded = false;
         Time.timeScale = 1f;
         gm = this;
         masterVolume = Settings.MasterVolume;
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void EndScreen()
     {
-        Time.timeScale = 0;
+        hasEnded = true;
         itemCounter.text = itemsObtained + " / " + itemsInLevel;
         int itemsLeft = itemsInLevel - itemsObtained;
         switch (itemsLeft)

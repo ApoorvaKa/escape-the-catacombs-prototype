@@ -15,12 +15,16 @@ public class ItemHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (item == null)
+        {
+            gameObject.layer = 0;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Time.timeScale != 0 && item != null && hasPlayer && Input.GetMouseButtonDown(0))
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -54,6 +58,7 @@ public class ItemHolder : MonoBehaviour
             Destroy(representation);
         }
         item = null;
+        gameObject.layer = 0;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

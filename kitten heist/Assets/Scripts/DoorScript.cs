@@ -12,7 +12,7 @@ public class DoorScript : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip unlockSound;
-
+    public AudioClip errorSound;
     void Start(){
         audioSource = GetComponent<AudioSource>();
     }
@@ -52,6 +52,9 @@ public class DoorScript : MonoBehaviour
 
             audioSource.PlayOneShot(unlockSound);
             Destroy(gameObject, .3f);
+        } else
+        {
+            audioSource.PlayOneShot(errorSound);
         }
     }
 

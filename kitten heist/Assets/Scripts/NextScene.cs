@@ -23,7 +23,9 @@ public class NextScene : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //SceneManager.LoadScene(nextScene);
+            GetComponent<AudioSource>().Play();
             GameManager.gm.EndScreen();
+            
         }
     }
 }
