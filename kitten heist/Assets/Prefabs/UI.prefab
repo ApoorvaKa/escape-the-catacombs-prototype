@@ -3898,7 +3898,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8107812406238474896}
   m_HandleRect: {fileID: 8107812406864923820}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.61
@@ -4116,7 +4116,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8107812405594545015}
   m_HandleRect: {fileID: 8107812407572918018}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.61
@@ -6965,6 +6965,7 @@ MonoBehaviour:
   - {fileID: 8107812406376798992}
   - {fileID: 8107812407620035627}
   itemCounter: {fileID: 8107812405880396367}
+  hasEnded: 0
 --- !u!1 &8107812406742247094
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,7 +7491,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8107812406529428419}
   m_HandleRect: {fileID: 8107812406573677240}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.61

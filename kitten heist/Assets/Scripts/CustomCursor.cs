@@ -13,11 +13,14 @@ public class CustomCursor : MonoBehaviour
     private EventSystem eventSystem;
     public bool hasPlayer = true;
 
+    private Animator anim;
+
     void Start()
     {
         // this sets the base cursor as invisible
         Cursor.visible = false;
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -60,6 +63,15 @@ public class CustomCursor : MonoBehaviour
                 hovered.SetActive(false);
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("Click");
+        }
+        //else
+        //{
+        //    anim.ResetTrigger("Click");
+        //}
         
 
         if (Cursor.visible)

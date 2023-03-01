@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     public void EndScreen()
     {
         hasEnded = true;
+        Time.timeScale = 0f;
         itemCounter.text = itemsObtained + " / " + itemsInLevel;
         int itemsLeft = itemsInLevel - itemsObtained;
         switch (itemsLeft)
