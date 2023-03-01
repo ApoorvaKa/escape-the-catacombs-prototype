@@ -34,37 +34,50 @@ public class ToggleLights : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0, layer);
                 if (hit)
                 {
-                    Toggle();
+                    Toggle(false);
                 }
             }
         }
 
     }
 
-    public void Toggle()
+    public void Toggle(bool toggleMode = true)
     {
-
-        if (lightsOn)
+        if (toggleMode)
         {
+            if (lightsOn)
+            {
 
+                audioSource.PlayOneShot(lightsOffSound);
+                lightsOn = false;
+                nightVision.SetActive(true);
+                fixer.GoToFixLight(transform, this);
+                foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
+                {
+                    e.TurnOffLight();
+                }
+            }
+            else
+            {
+                lightsOn = true;
+                nightVision.SetActive(false);
+                foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
+                {
+                    e.TurnOnLight();
+                }
+            }
+        } else
+        {
             audioSource.PlayOneShot(lightsOffSound);
             lightsOn = false;
             nightVision.SetActive(true);
             fixer.GoToFixLight(transform, this);
-            foreach(var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
+            foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
             {
                 e.TurnOffLight();
             }
         }
-        else
-        {
-            lightsOn = true;
-            nightVision.SetActive(false);
-            foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
-            {
-                e.TurnOnLight();
-            }
-        }
+        
     }
 
     //private void OnMouseDown() {
